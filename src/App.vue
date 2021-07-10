@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <main-tabber />
+    <router-view></router-view>
   </div>
+  
 </template>
 
 <script>

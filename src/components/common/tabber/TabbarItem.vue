@@ -1,17 +1,33 @@
 <template>
-  <div class="tabber-items">
+  <div class="tabber-items" @click="itemClick">
     <div v-if="!isActive"><slot name='items-icon'></slot></div>
     <div v-else><slot name='items-icon-active'></slot></div>
-    <div><slot name='items-text'></slot></div>
+    <div :class="{active: isActive}"><slot name='items-text'></slot></div>
   </div>
 </template>
 
 <script>
 export default {
   name:"TabbarItem",
+  props: {
+    path:String
+  },
   data() {
     return {
-      isActive:false
+      // isActive:true
+    }
+  },
+  computed: {
+    // 直接当做普通属性调用不加括号
+    // 任何data中数据变化立即重新计算
+    // 计算属性会缓存
+    isActive(){
+      return this.$route.path.indexOf(this.path) !==-1
+    }
+  },
+  methods: {
+    itemClick(){
+      this.$router.replace(this.path)
     }
   },
 };
@@ -36,5 +52,8 @@ export default {
   vertical-align: middle;
   /* 自己定义图片和文字之间的空隙 */
   margin-bottom: 2px;
+}
+.active{
+  color: #ff5777;
 }
 </style>
