@@ -1,24 +1,25 @@
 <template>
   <div id="main-tabber">
     <tabbar>
+      <!-- 可以通过在tabbar-item标签中使用activeStyle属性来控制字体颜色 -->
       <tabbar-item path="/home">
-        <img slot="items-icon" src="../../assets/img/home.svg" alt="" />
-        <img slot="items-icon-active" src="../../assets/img/home_active.svg" alt="" />
+        <img slot="items-icon" src="~assets/img/home.svg" alt="" />
+        <img slot="items-icon-active" src="~assets/img/home_active.svg" alt="" />
         <div slot="items-text">首页</div>
       </tabbar-item>
       <tabbar-item path="/category">
-        <img slot="items-icon" src="../../assets/img/category.svg" alt="" />
-        <img slot="items-icon-active" src="../../assets/img/category_active.svg" alt="" />
+        <img slot="items-icon" src="~assets/img/category.svg" alt="" />
+        <img slot="items-icon-active" src="~assets/img/category_active.svg" alt="" />
         <div slot="items-text">分类</div>
       </tabbar-item>
       <tabbar-item path="/shopcart">
-        <img slot="items-icon" src="../../assets/img/shopcart.svg" alt="" />
-        <img slot="items-icon-active" src="../../assets/img/shopcart_active.svg" alt="" />
+        <img slot="items-icon" src="~assets/img/shopcart.svg" alt="" />
+        <img slot="items-icon-active" src="~assets/img/shopcart_active.svg" alt="" />
         <div slot="items-text">购物车</div>
       </tabbar-item>
       <tabbar-item path="/profile">
-        <img slot="items-icon" src="../../assets/img/profile.svg" alt="" />
-        <img slot="items-icon-active" src="../../assets/img/profile_active.svg" alt="" />
+        <img slot="items-icon" src="~assets/img/profile.svg" alt="" />
+        <img slot="items-icon-active" src="~assets/img/profile_active.svg" alt="" />
         <div slot="items-text">我的</div>
       </tabbar-item>
     </tabbar>
