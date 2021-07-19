@@ -1,7 +1,7 @@
 <template>
   <div id="main-tabber">
     <tabbar>
-      <!-- 可以通过在tabbar-item标签中使用activeStyle属性来控制字体颜色 -->
+      <!-- 可以通过在tabbar-item标签中使用activeColor属性来控制字体颜色 -->
       <tabbar-item path="/home">
         <img slot="items-icon" src="~assets/img/home.svg" alt="" />
         <img slot="items-icon-active" src="~assets/img/home_active.svg" alt="" />
