@@ -32,7 +32,7 @@
         default: true
       }
     },
-    data: function () {
+    data () {
 		  return {
         slideCount: 0, // 元素个数
         totalWidth: 0, // swiper的宽度
@@ -41,7 +41,7 @@
         scrolling: false, // 是否正在滚动
       }
     },
-    mounted: function () {
+    mounted () {
       // 1.操作DOM, 在前后添加Slide
       setTimeout(() => {
         this.handleDom();
