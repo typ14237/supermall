@@ -10,13 +10,13 @@ export function request(config){
   instance.interceptors.request.use(config => {
     return config
   }),err =>{
-    return console.log(err);
+    return Promise.reject(err);
   }
   // 2.2响应拦截器
   instance.interceptors.response.use(res =>{
     return res.data
   }, err =>{
-    console.log(err);
+    return Promise.reject(err);
   })
   // 3.发送真正的网络请求
   return instance(config)
