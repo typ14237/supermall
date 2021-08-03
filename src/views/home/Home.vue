@@ -6,6 +6,8 @@
     <home-swiper :banner="banner"></home-swiper>
     <home-recommend-view :recommend="recommend" />
     <home-feature-view />
+
+    <tab-control class="tab-control" :title="['流行','新款','精选']" />
     <ul>
       <li>列表1</li>
       <li>列表2</li>
@@ -27,26 +29,63 @@
       <li>列表18</li>
       <li>列表19</li>
       <li>列表20</li>
+      <li>列表16</li>
+      <li>列表17</li>
+      <li>列表18</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表16</li>
+      <li>列表17</li>
+      <li>列表18</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表16</li>
+      <li>列表17</li>
+      <li>列表18</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表16</li>
+      <li>列表17</li>
+      <li>列表18</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表16</li>
+      <li>列表17</li>
+      <li>列表18</li>
+      <li>列表19</li>
+      <li>列表20</li>
+      <li>列表16</li>
+      <li>列表17</li>
+      <li>列表18</li>
+      <li>列表19</li>
+      <li>列表20</li>
     </ul>
   </div>
 </template>
 
 <script>
+// 公共组件
 import NavBar from 'components/common/navbar/NavBar'
+import TabControl from '../../components/content/TabControl.vue';
+// 子组件
 import HomeSwiper from './childComps/HomeSwiper.vue'
 import HomeRecommendView from './childComps/HomeRecommendView.vue';
 import HomeFeatureView from './childComps/HomeFeatureView.vue';
-
+// 导入的方法
 import {getHomeMultidata} from 'network/home';
-
 
 export default {
   name:"Home",
   components:{
     NavBar,
+    TabControl,
     HomeSwiper,
     HomeRecommendView,
-    HomeFeatureView
+    HomeFeatureView,
   },
   data() {
     return {
@@ -84,5 +123,10 @@ export default {
     right: 0;
     top: 0;
     z-index: 2;
+  }
+  .tab-control{
+    /* 当下滑到设置的的位置(44px)时，该position属性会改为fixed，并将该组件固定 */
+    position: sticky;
+    top:44px;
   }
 </style>
