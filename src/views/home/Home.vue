@@ -7,7 +7,7 @@
     <home-recommend-view :recommend="recommend" />
     <home-feature-view />
 
-    <tab-control class="tab-control" :title="['流行','新款','精选']" />
+    <tab-control class="tab-control" :title="['流行', '新款', '精选']" />
     <ul>
       <li>列表1</li>
       <li>列表2</li>
@@ -69,18 +69,18 @@
 
 <script>
 // 公共组件
-import NavBar from 'components/common/navbar/NavBar'
-import TabControl from '../../components/content/TabControl.vue';
+import NavBar from "components/common/navbar/NavBar";
+import TabControl from "components/content/TabControl.vue";
 // 子组件
-import HomeSwiper from './childComps/HomeSwiper.vue'
-import HomeRecommendView from './childComps/HomeRecommendView.vue';
-import HomeFeatureView from './childComps/HomeFeatureView.vue';
-// 导入的方法
-import {getHomeMultidata} from 'network/home';
+import HomeSwiper from "./childComps/HomeSwiper.vue";
+import HomeRecommendView from "./childComps/HomeRecommendView.vue";
+import HomeFeatureView from "./childComps/HomeFeatureView.vue";
+// 导入网络中响应数据的方法
+import { getHomeMultidata, getHomeGoods } from "network/home";
 
 export default {
-  name:"Home",
-  components:{
+  name: "Home",
+  components: {
     NavBar,
     TabControl,
     HomeSwiper,
@@ -89,55 +89,79 @@ export default {
   },
   data() {
     return {
-      //result:null,//查看有几种数据
-      banner:[],
-      recommend:[],
-      keywords:[],
-      dKeyword:[],
-      goods:{
-        'pop':{
-          page:0,list:[]
+      // result:null,//查看有几种数据
+      banner: [],
+      recommend: [],
+      keywords: [],
+      dKeyword: [],
+      goods: {
+        "pop": {
+          page: 0,
+          list: [],
         },
-        'news':{
-          page:0,list:[]
+        "new": {
+          page: 0,
+          list: [],
         },
-        'sell':{
-          page:0,list:[]
+        "sell": {
+          page: 0,
+          list: [],
         },
-      }
-    }
+      },
+    };
   },
   created() {
-    // 1.请求多个数据
-    getHomeMultidata().then((result) => {
-      //this.result=result
-      this.banner=result.data.banner.list
-      this.recommend=result.data.recommend.list
-      this.keywords=result.data.keywords
-      this.dKeyword = result.data.dKeyword
-    }).catch((err) => {
-      console.log(err);
-    });
+    // 一般不会在生命周期函数中写具体逻辑，具体逻辑一般放在methods中，然后再直接使用这个方法
+    // 这个this一定得要，因为是调用methods中的方法，否则会调用导入的方法
+    // 请求多个数据
+    this.getHomeMultidata()
+    // 请求商品信息
+    this.getHomeGoods("pop")
+    this.getHomeGoods("new")
+    this.getHomeGoods("sell")
   },
-}
-
+  methods: {
+    // 为什么要起同样的名字呢，这是为了避免命名污染和方便知道是哪个方法(和java中的重载类似)
+    getHomeMultidata() {
+      // 1.请求多个数据
+      getHomeMultidata()
+        .then((result) => {
+          // this.result=result
+          this.banner = result.data.banner.list;
+          this.recommend = result.data.recommend.list;
+          this.keywords = result.data.keywords;
+          this.dKeyword = result.data.dKeyword;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getHomeGoods(type) {
+      const page = this.goods[type].page + 1
+      getHomeGoods(type, page).then((res) => {
+        this.goods[type].list.push(...res.data.list)
+        this.goods[type].page +=1
+      });
+    },
+  },
+};
 </script>
 <style scoped>
-  #home{
-    padding-top:44px;
-  }
-  .home-nav{
-    background-color:var(--color-tint) ;
-    color: #fff;
-    position:fixed ;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 2;
-  }
-  .tab-control{
-    /* 当下滑到设置的的位置(44px)时，该position属性会改为fixed，并将该组件固定 */
-    position: sticky;
-    top:44px;
-  }
+#home {
+  padding-top: 44px;
+}
+.home-nav {
+  background-color: var(--color-tint);
+  color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+.tab-control {
+  /* 当下滑到设置的的位置(44px)时，该position属性会改为fixed，并将该组件固定 */
+  position: sticky;
+  top: 44px;
+}
 </style>
