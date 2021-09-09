@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 11:50:48
- * @LastEditTime: 2021-08-03 15:47:01
+ * @LastEditTime: 2021-09-02 11:11:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \exercise\supermall\src\components\content\TabControl.vue
@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     itemClick(index){
-      this.currentIndex=index
+      this.currentIndex=index;
+      this.$emit('tabClick',index)
     }
   },
 }
